@@ -1,4 +1,4 @@
-namespace SistemaDeGerenciamentoDeClientesMvc.Models;
+namespace ClienteMVC.Models;
 
 public class ErrorViewModel
 {
