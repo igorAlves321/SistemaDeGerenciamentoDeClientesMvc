@@ -1,9 +1,8 @@
-namespace SistemaDeGerenciamentoDeClientesMvc.Models
-{
-    public class ErrorViewModel
-    {
-        public string? RequestId { get; set; }
+namespace SistemaDeGerenciamentoDeClientesMvc.Models;
 
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-    }
+public class ErrorViewModel
+{
+    public string? RequestId { get; set; }
+
+    public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 }

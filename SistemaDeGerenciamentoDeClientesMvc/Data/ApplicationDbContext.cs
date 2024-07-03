@@ -1,15 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaDeGerenciamentoDeClientesMvc.Models;
 
-namespace SistemaDeGerenciamentoDeClientesMvc.Data
-{
-    public class ApplicationDbContext : DbContext
-    {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
+namespace SistemaDeGerenciamentoDeClientesMvc.Data;
 
-        public DbSet<Cliente> Clientes { get; set; }
+public class ApplicationDbContext : DbContext
+{
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
+    {
     }
+
+    public DbSet<Cliente> Clientes { get; set; }
 }
