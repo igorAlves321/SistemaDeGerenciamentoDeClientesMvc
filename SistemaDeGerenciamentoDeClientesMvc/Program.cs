@@ -1,5 +1,6 @@
-using ClienteMvc.Data;
+using SistemaDeGerenciamentoDeClientesMvc.Data;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,7 +32,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Clientes}/{action=Index}/{id?}"
-);
+    pattern: "{controller=Clientes}/{action=Index}/{id?}");
 
 app.Run();

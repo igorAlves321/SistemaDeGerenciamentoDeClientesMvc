@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using ClienteMvc.Models;
+using SistemaDeGerenciamentoDeClientesMvc.Models;
 
-namespace ClienteMvc.Data
+namespace SistemaDeGerenciamentoDeClientesMvc.Data
 {
     public class ApplicationDbContext : DbContext
     {
@@ -11,11 +11,5 @@ namespace ClienteMvc.Data
         }
 
         public DbSet<Cliente> Clientes { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Cliente>()
-                .HasKey(c => c.ID_Cliente);
-        }
     }
 }
