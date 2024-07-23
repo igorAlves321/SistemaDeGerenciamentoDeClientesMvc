@@ -1,91 +1,82 @@
 using Microsoft.AspNetCore.Mvc;
-using SistemaDeGerenciamentoDeClientesMvc.Data;
+using System.Collections.Generic;
 using SistemaDeGerenciamentoDeClientesMvc.Models;
+using SistemaDeGerenciamentoDeClientesMvc.Data;
 
-namespace SistemaDeGerenciamentoDeClientesMvc.Controllers;
-
-public class ClientesController : Controller
+namespace SistemaDeGerenciamentoDeClientesMvc.Controllers
 {
-    private readonly ApplicationDbContext _context;
-
-    public ClientesController(ApplicationDbContext context)
+    public class ClientesController : Controller
     {
-        _context = context;
-    }
+        private readonly ApplicationDbContext _context;
 
-    public IActionResult Index()
-    {
-        List<Cliente> clientes = Cliente.GetClientes(_context);
-        return View(clientes);
-    }
-
-    public IActionResult Create()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult Create(Cliente cliente)
-    {
-        if (ModelState.IsValid)
+        public ClientesController(ApplicationDbContext context)
         {
-            cliente.AddCliente(_context);
-            return RedirectToAction("Index");
-        }
-        return View(cliente);
-    }
-
-    public IActionResult Edit(int id)
-    {
-        var cliente = _context.Clientes.Find(id);
-        if (cliente == null)
-        {
-            return NotFound();
-        }
-        return View(cliente);
-    }
-
-    [HttpPost]
-    public IActionResult Edit(Cliente cliente)
-    {
-        if (ModelState.IsValid)
-        {
-            cliente.UpdateCliente(_context);
-            return RedirectToAction("Index");
-        }
-        return View(cliente);
-    }
-
-    public IActionResult Delete(int id)
-    {
-        var cliente = _context.Clientes.Find(id);
-        if (cliente == null)
-        {
-            return NotFound();
-        }
-        return View(cliente);
-    }
-
-    [HttpPost, ActionName("Delete")]
-    public IActionResult DeleteConfirmed(int id)
-    {
-        Cliente.DeleteCliente(id, _context);
-        return RedirectToAction("Index");
-    }
-
-    public IActionResult Details(int? id)
-    {
-        if (id == null)
-        {
-            return NotFound();
+            _context = context;
         }
 
-        var cliente = _context.Clientes.FirstOrDefault(m => m.ID_Cliente == id);
-        if (cliente == null)
+        public IActionResult Index()
         {
-            return NotFound();
+            return View();
         }
 
-        return View(cliente);
+        public IActionResult VisualizarClientes()
+        {
+            List<Cliente> clientes = Cliente.GetClientes(_context);
+            return View(clientes);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Cliente cliente)
+        {
+            if (ModelState.IsValid)
+            {
+                cliente.AddCliente(_context);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(cliente);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var cliente = _context.Clientes.Find(id);
+            if (cliente == null)
+            {
+                return NotFound();
+            }
+            return View(cliente);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Cliente cliente)
+        {
+            if (ModelState.IsValid)
+            {
+                cliente.UpdateCliente(_context);
+                return RedirectToAction(nameof(VisualizarClientes));
+            }
+            return View(cliente);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var cliente = _context.Clientes.Find(id);
+            if (cliente == null)
+            {
+                return NotFound();
+            }
+            return View(cliente);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            Cliente.DeleteCliente(id, _context);
+            return RedirectToAction(nameof(VisualizarClientes));
+        }
     }
 }
