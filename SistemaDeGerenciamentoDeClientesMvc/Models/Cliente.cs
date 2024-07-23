@@ -3,52 +3,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SistemaDeGerenciamentoDeClientesMvc.Models;
 
-public class Cliente
-{
-    [Key]
-    public int ID_Cliente { get; set; }
-    public string Nome { get; set; }
-    public string Endereco { get; set; }
-    public string Telefone { get; set; }
-    public string RG { get; set; }
-    public string CPF { get; set; }
-    public string Email { get; set; }
-
-
-    public Cliente()
+    public class Cliente
     {
-        Nome = string.Empty;
-        Endereco = string.Empty;
-        Telefone = string.Empty;
-        RG = string.Empty;
-        CPF = string.Empty;
-        Email = string.Empty;
-    }
+        [Key]
+        public int ID_Cliente { get; set; }
 
-    public void AddCliente(ApplicationDbContext context)
-    {
-        context.Clientes.Add(this);
-        context.SaveChanges();
-    }
+        public string Nome { get; set; }
 
-    public static List<Cliente> GetClientes(ApplicationDbContext context)
-    {
-        return context.Clientes.ToList();
-    }
+        public string Endereco { get; set; }
 
-    public void UpdateCliente(ApplicationDbContext context)
-    {
-        context.Clientes.Update(this);
-        context.SaveChanges();
-    }
+        public string Telefone { get; set; }
 
-    public static void DeleteCliente(int id, ApplicationDbContext context)
-    {
-        var cliente = context.Clientes.Find(id);
-        if (cliente != null)
-        {
-            context.Clientes.Remove(cliente);
-            context.SaveChanges();
-        }
+        public string RG { get; set; }
+
+        public string CPF { get; set; }
+
+        public string Email { get; set; }
     }
-}
