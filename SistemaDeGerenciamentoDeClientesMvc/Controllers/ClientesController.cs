@@ -72,4 +72,20 @@ public class ClientesController : Controller
         Cliente.DeleteCliente(id, _context);
         return RedirectToAction("Index");
     }
+
+    public IActionResult Details(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var cliente = _context.Clientes.FirstOrDefault(m => m.ID_Cliente == id);
+        if (cliente == null)
+        {
+            return NotFound();
+        }
+
+        return View(cliente);
+    }
 }
